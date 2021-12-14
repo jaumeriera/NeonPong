@@ -22,7 +22,26 @@ public class BallMove : MonoBehaviour
 
     void Update()
     {
-        transform.position += translation * Time.deltaTime;
+        switch(gameManager.getState()) {  
+            case GameManager.State.Playing:
+                transform.position += translation * Time.deltaTime;
+                break;
+            case GameManager.State.Goal1:
+                if(Input.GetAxisRaw("Fire1") > 0) {
+                    float zVelocity = Random.Range(0, 2) == 0 ? -1 : 1;
+                    translation = new Vector3(1, 0, zVelocity) * initialVelocity;
+                    gameManager.served();
+                }
+                break;
+            case GameManager.State.Goal2:
+                if(Input.GetAxisRaw("Fire2") > 0) {
+                    float zVelocity = Random.Range(0, 2) == 0 ? -1 : 1;
+                    translation = new Vector3(-1, 0, zVelocity) * initialVelocity;
+                    gameManager.served();
+                }
+                break;
+        }
+        
     }
 
     void OnCollisionEnter(Collision collision) {
