@@ -12,6 +12,11 @@ public class BallMove : MonoBehaviour
     private float initialVelocity = 4f;
     private Vector3 translation;
 
+    // To manage ball speed
+    [SerializeField] int INCREASEEACH = 10;
+    [SerializeField] float INCREASEVELOCITY = 1.4F;
+    private int currentHits = 0;
+
     void Start()
     {
         ballRb = GetComponent<Rigidbody>();
@@ -48,6 +53,8 @@ public class BallMove : MonoBehaviour
         if (collision.gameObject.tag == "Wall") {
             translation.z = translation.z * -1;
         } else if (collision.gameObject.tag == "Player") {
+            currentHits += 1;
+            checkForVelocityIncrease();
             translation.x = translation.x * -1;
         }
     }
@@ -66,6 +73,15 @@ public class BallMove : MonoBehaviour
     }
 
     void stopBall() {
+        // Stop counting hits and stop translation
+        currentHits = 0;
         translation = new Vector3(0, 0, 0);
+    }
+
+    void checkForVelocityIncrease() {
+        if (currentHits % INCREASEEACH == 0) {
+            translation.x = translation.x * INCREASEVELOCITY;
+            translation.z = translation.z * INCREASEVELOCITY;
+        }
     }
 }
