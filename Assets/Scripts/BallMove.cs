@@ -60,8 +60,8 @@ public class BallMove : MonoBehaviour
     }
 
     void changeTranslation(Collision collision) {
-// The ball hists one side of the bar
-        if (this.transform.position.x == collision.gameObject.transform.position.x) {
+        if (this.transform.position.x == collision.gameObject.transform.position.x) {   
+            // The ball hists one side of the bar
             translation.z = translation.z * -1;
         } else if (collision.gameObject.GetComponent<PlayerMovement>().isInFront(this.gameObject)){
             translation.x = translation.x * -1;

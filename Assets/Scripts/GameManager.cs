@@ -53,7 +53,10 @@ public class GameManager : MonoBehaviour
     public void player1Score() {
         state = State.Goal1;
         score1 += 1;
-        print("Foo");
+        if(matchIsFinished()){
+            // TODO Go to final screen
+            doNothing();
+        }
         display1.updateScore(score1);
         restartPlayers();
         // place ball in front of player 1
@@ -64,7 +67,10 @@ public class GameManager : MonoBehaviour
     public void player2Score() {
         state = State.Goal2;
         score2 += 1;
-        print("Foo");
+        if (matchIsFinished()) {
+            // TODO Go to final screen
+            doNothing();
+        }
         display2.updateScore(score2);
         restartPlayers();
         // place ball in front of player 1
@@ -72,8 +78,17 @@ public class GameManager : MonoBehaviour
         ball.transform.parent = player2Transform;
     }
 
+    private bool matchIsFinished(){
+        return score1 == 10 || score2 == 10;
+    }
+
     public void served(){
         state = State.Playing;
         ball.transform.parent = null;
+    }
+
+    // TODO REMOVE
+    private bool doNothing(){
+        return true;
     }
 }
