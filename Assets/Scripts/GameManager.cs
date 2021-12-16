@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
 
     // Ball
     [SerializeField] private GameObject ball;
+    [SerializeField] private BallMove ballMove;
+
+    // Score display
+    [SerializeField] private ScoreDisplay display1;
+    [SerializeField] private ScoreDisplay display2;
 
     // To manage score display
 
@@ -29,6 +34,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        state = State.Pause;
+    }
+
+    public void startMatch() {
         state = State.Playing;
     }
 
@@ -44,6 +53,8 @@ public class GameManager : MonoBehaviour
     public void player1Score() {
         state = State.Goal1;
         score1 += 1;
+        print("Foo");
+        display1.updateScore(score1);
         restartPlayers();
         // place ball in front of player 1
         ball.transform.position = player1Transform.position + new Vector3(0.7f, 0, 0);
@@ -53,6 +64,8 @@ public class GameManager : MonoBehaviour
     public void player2Score() {
         state = State.Goal2;
         score2 += 1;
+        print("Foo");
+        display2.updateScore(score2);
         restartPlayers();
         // place ball in front of player 1
         ball.transform.position = player2Transform.position - new Vector3(0.7f, 0, 0);

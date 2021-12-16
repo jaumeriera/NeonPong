@@ -23,4 +23,12 @@ public class PlayerMovement : MonoBehaviour
         playerPosition.z = Mathf.Clamp(newPosition, -zBound, zBound);
         transform.position = playerPosition;
     }
+
+    public bool isInFront(GameObject other){
+        if (isPlayer1) {
+            return this.transform.position.x < other.transform.position.x;
+        } else {
+            return this.transform.position.x > other.transform.position.x;
+        }
+    }
 }

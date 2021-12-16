@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 378766620}
   - component: {fileID: 378766619}
   - component: {fileID: 378766618}
+  - component: {fileID: 378766621}
   m_Layer: 5
   m_Name: Player 1 Score
   m_TagString: Untagged
@@ -280,6 +281,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378766616}
   m_CullTransparentMesh: 1
+--- !u!114 &378766621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378766616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3455202c63cf48479d721e0cbbc054c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreDisplay: {fileID: 378766619}
 --- !u!1 &479881072
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +306,7 @@ GameObject:
   - component: {fileID: 479881076}
   - component: {fileID: 479881075}
   - component: {fileID: 479881074}
+  - component: {fileID: 479881077}
   m_Layer: 5
   m_Name: Player 2 Score
   m_TagString: Untagged
@@ -375,6 +390,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479881072}
   m_CullTransparentMesh: 1
+--- !u!114 &479881077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479881072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3455202c63cf48479d721e0cbbc054c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreDisplay: {fileID: 479881075}
 --- !u!1 &557959970
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +628,8 @@ GameObject:
   - component: {fileID: 964136092}
   - component: {fileID: 964136094}
   - component: {fileID: 964136093}
+  - component: {fileID: 964136095}
+  - component: {fileID: 964136096}
   m_Layer: 5
   m_Name: InfoText
   m_TagString: Untagged
@@ -668,6 +698,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 964136091}
   m_CullTransparentMesh: 1
+--- !u!114 &964136095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964136091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf1112f84031a94eaf4d248385f62f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlinkFadeInTime: 1
+  BlinkStayTime: 0
+  BlinkFadeOutTime: 1
+--- !u!114 &964136096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964136091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb896ffba80c5b45899c27c38d6d67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballMove: {fileID: 1657027018}
+  gameManager: {fileID: 1395090537}
 --- !u!1 &1001735335
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,6 +1128,9 @@ MonoBehaviour:
   player1Transform: {fileID: 725957814}
   player2Transform: {fileID: 216248380}
   ball: {fileID: 1657027017}
+  ballMove: {fileID: 1657027018}
+  display1: {fileID: 378766621}
+  display2: {fileID: 479881077}
 --- !u!1 &1545237526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,6 +1345,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 225458642140435743, guid: a8eabaeca3d747b4eaf261a597751446, type: 3}
   m_PrefabInstance: {fileID: 8244701049299997874}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1657027018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6423568616228141757, guid: a8eabaeca3d747b4eaf261a597751446, type: 3}
+  m_PrefabInstance: {fileID: 8244701049299997874}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657027017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99dc95ac50474942825f3030c2887bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1827309644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,7 +1711,11 @@ PrefabInstance:
       objectReference: {fileID: 1395090537}
     - target: {fileID: 6423568616228141757, guid: a8eabaeca3d747b4eaf261a597751446, type: 3}
       propertyPath: INCREASEEACH
-      value: 1
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6423568616228141757, guid: a8eabaeca3d747b4eaf261a597751446, type: 3}
+      propertyPath: INCREASEVELOCITY
+      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8eabaeca3d747b4eaf261a597751446, type: 3}
