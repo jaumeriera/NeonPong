@@ -107,6 +107,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 2830216663864425795, guid: b4b5b2ba4e7eed24990423613c26b097, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6582868991721198351, guid: b4b5b2ba4e7eed24990423613c26b097, type: 3}
       propertyPath: m_Name
       value: MenuItem Variant
