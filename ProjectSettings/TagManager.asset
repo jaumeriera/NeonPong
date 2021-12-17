@@ -8,6 +8,7 @@ TagManager:
   - ScoreZonePlayer1
   - ScoreZonePlayer2
   - GameManager
+  - Settings
   layers:
   - Default
   - TransparentFX
