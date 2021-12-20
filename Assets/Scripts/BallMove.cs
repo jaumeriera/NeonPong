@@ -17,6 +17,10 @@ public class BallMove : MonoBehaviour
     [SerializeField] float INCREASEVELOCITY = 1.4F;
     private int currentHits = 0;
 
+    // Constants for directions
+    private int DIRECTIONPLAYER1 = 1;
+    private int DIRECTIONPLAYER2 = -1;
+
     void Start()
     {
         ballRb = GetComponent<Rigidbody>();
@@ -33,20 +37,24 @@ public class BallMove : MonoBehaviour
                 break;
             case GameManager.State.Goal1:
                 if(Input.GetAxisRaw("Fire1") > 0) {
-                    float zVelocity = Random.Range(0, 2) == 0 ? -1 : 1;
-                    translation = new Vector3(1, 0, zVelocity) * initialVelocity;
-                    gameManager.served();
+                    serve(DIRECTIONPLAYER1);
                 }
                 break;
             case GameManager.State.Goal2:
-                if(Input.GetAxisRaw("Fire2") > 0) {
-                    float zVelocity = Random.Range(0, 2) == 0 ? -1 : 1;
-                    translation = new Vector3(-1, 0, zVelocity) * initialVelocity;
-                    gameManager.served();
+                if (gameManager.isSinglePlayer()){
+                    StartCoroutine(AIServe());
+                } else if(Input.GetAxisRaw("Fire2") > 0) {
+                    serve(DIRECTIONPLAYER2);
                 }
                 break;
         }
         
+    }
+
+    private void serve(int direction) {
+        float zVelocity = Random.Range(0, 2) == 0 ? -1 : 1;
+        translation = new Vector3(-1, 0, zVelocity) * initialVelocity;
+        gameManager.served();
     }
 
     void OnCollisionEnter(Collision collision) {
@@ -92,5 +100,11 @@ public class BallMove : MonoBehaviour
             translation.x = translation.x * INCREASEVELOCITY;
             translation.z = translation.z * INCREASEVELOCITY;
         }
+    }
+
+    public IEnumerator AIServe(){
+        gameManager.served();
+        yield return new WaitForSeconds(2);
+        serve(DIRECTIONPLAYER2);
     }
 }

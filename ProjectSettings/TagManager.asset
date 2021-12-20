@@ -9,6 +9,7 @@ TagManager:
   - ScoreZonePlayer2
   - GameManager
   - Settings
+  - ball
   layers:
   - Default
   - TransparentFX

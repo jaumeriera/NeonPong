@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // Game Manager
+    [SerializeField] GameManager gameManager;
+
+    // For IA player
+    private GameObject ball;
 
     public int velocity = 7;
     public bool isPlayer1 = false;
@@ -15,13 +20,28 @@ public class PlayerMovement : MonoBehaviour
         float movement;
         if (isPlayer1) {
             movement = Input.GetAxisRaw("Vertical");
-        } else {
+        } else if (!isPlayer1 && !gameManager.isSinglePlayer()) {
             movement = Input.GetAxisRaw("Vertical2");
+        } else {
+            if (!ball) {
+                searchForBall();
+            }
+            // IA movement
+            movement = 0;
+            if (ball.transform.position.z < transform.position.z) {
+                movement = -1;
+            } else if (ball.transform.position.z > transform.position.z){
+                movement = 1;
+            }
         }
         Vector3 playerPosition = transform.position;
         float newPosition = playerPosition.z + movement * velocity * Time.deltaTime;
         playerPosition.z = Mathf.Clamp(newPosition, -zBound, zBound);
         transform.position = playerPosition;
+    }
+
+    private void searchForBall() {
+        ball = GameObject.FindGameObjectWithTag("ball");
     }
 
     public bool isInFront(GameObject other){

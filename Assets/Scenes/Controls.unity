@@ -1020,7 +1020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 630961656359598061, guid: c6d269e687f308440a55b8b80c7a5f5a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayGame
+      value: PlayTwoGame
       objectReference: {fileID: 0}
     - target: {fileID: 630961656359598061, guid: c6d269e687f308440a55b8b80c7a5f5a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2014,7 +2014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 630961656359598061, guid: c6d269e687f308440a55b8b80c7a5f5a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayGame
+      value: PlaySingleGame
       objectReference: {fileID: 0}
     - target: {fileID: 630961656359598061, guid: c6d269e687f308440a55b8b80c7a5f5a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

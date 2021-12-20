@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ScoreDisplay display1;
     [SerializeField] private ScoreDisplay display2;
 
-    // To manage score display
+    // To manage settings
+    private Settings settings;
 
     // To manage score
     private int score1 = 0;
@@ -35,6 +36,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         state = State.Pause;
+        settings = GameObject.Find("Settings").GetComponent<Settings>();
+    }
+
+    public bool isSinglePlayer() {
+        return settings.GetSinglePlayer();
     }
 
     public void startMatch() {
@@ -91,4 +97,5 @@ public class GameManager : MonoBehaviour
     private bool doNothing(){
         return true;
     }
+
 }

@@ -12,9 +12,11 @@ public class UIManager : MonoBehaviour
     // 2: Controls
     // 3: Settings
 
+    private Settings settings;
+
     private void Start()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1; 
     }
 
     public void ResumeGame()
@@ -29,10 +31,17 @@ public class UIManager : MonoBehaviour
 
     public void MainMenu()
     {
-
         SceneManager.LoadScene(0);
     }
-    public void PlayGame()
+
+    public void PlaySingleGame()
+    {
+        settings = GameObject.Find("Settings").GetComponent<Settings>();
+        settings.SetSinglePlayer(true);
+        SceneManager.LoadScene(1);
+    }
+
+    public void PlayTwoGame()
     {
         SceneManager.LoadScene(1);
     }

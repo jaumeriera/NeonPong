@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
-    private bool OnePlayer;
+    private bool SinglePlayer;
     private bool powerUpsActive;
     
-    public bool GetOnePlayer(){
-        return OnePlayer;
+    public bool GetSinglePlayer(){
+        return SinglePlayer;
     }
 
-    public void SetOnePlayer(bool onePlayer){
-        OnePlayer = onePlayer;
+    public void SetSinglePlayer(bool one){
+        SinglePlayer = one;
     }
 
     public bool GetPowerUpsActive(){
