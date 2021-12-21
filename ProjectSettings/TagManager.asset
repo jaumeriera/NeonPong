@@ -10,6 +10,8 @@ TagManager:
   - GameManager
   - Settings
   - ball
+  - PauseMenu
+  - PowerUp
   layers:
   - Default
   - TransparentFX

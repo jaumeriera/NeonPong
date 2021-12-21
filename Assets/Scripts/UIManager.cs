@@ -12,20 +12,29 @@ public class UIManager : MonoBehaviour
     // 2: Controls
     // 3: Settings
 
+    // To active and deactivate menu
+    private GameObject pauseMenu;
+
     private Settings settings;
 
     private void Start()
     {
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+        if (pauseMenu){
+            pauseMenu.SetActive(false);
+        }
         Time.timeScale = 1; 
     }
 
     public void ResumeGame()
     {
+        pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
 
     public void PauseGame()
     {
+        pauseMenu.SetActive(true);
         Time.timeScale = 0;
     }
 

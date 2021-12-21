@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     // To manage players
     [SerializeField] private Transform player1Transform;
     [SerializeField] private Transform player2Transform;
+    [SerializeField] private PlayerMovement player1State;
+    [SerializeField] private PlayerMovement player2State;
 
     // Ball
     [SerializeField] private GameObject ball;
@@ -15,6 +17,12 @@ public class GameManager : MonoBehaviour
     // Score display
     [SerializeField] private ScoreDisplay display1;
     [SerializeField] private ScoreDisplay display2;
+
+    // To control pause
+    [SerializeField] private UIManager uimanager;
+
+    // Spawner
+    [SerializeField] private PowerUpSpawner spawner;
 
     // To manage settings
     private Settings settings;
@@ -54,6 +62,9 @@ public class GameManager : MonoBehaviour
     void restartPlayers() {
         player1Transform.position = new Vector3(player1Transform.position.x, 0, 0);
         player2Transform.position = new Vector3(player2Transform.position.x, 0, 0);
+        spawner.Restart();
+        player1State.powerUp=null;
+        player2State.powerUp=null;
     }
 
     public void player1Score() {
@@ -91,6 +102,10 @@ public class GameManager : MonoBehaviour
     public void served(){
         state = State.Playing;
         ball.transform.parent = null;
+    }
+
+    public void Pause() {
+        uimanager.PauseGame();
     }
 
     // TODO REMOVE

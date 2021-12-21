@@ -85,8 +85,6 @@ public class BallMove : MonoBehaviour
             stopBall();
             gameManager.player1Score();
         }
-
-        // TODO if is a power up chek later
     }
 
     void stopBall() {
