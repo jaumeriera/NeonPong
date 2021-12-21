@@ -113,4 +113,20 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    public void SetPlayer1PowerUp(GameObject obj){
+        uimanager.SetPowerUp1(obj);
+    }
+
+    public void SetPlayer2PowerUp(GameObject obj){
+        uimanager.SetPowerUp2(obj);
+    }
+
+    public void PowerUpUsed1(){
+        uimanager.UnsetPowerUp1();
+    }
+
+    public void PowerUpUsed2(){
+        uimanager.UnsetPowerUp2();
+    }
+
 }

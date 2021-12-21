@@ -13,16 +13,16 @@ public class PowerUp : MonoBehaviour
 
     private PowerUpType type;
 
+    private Color FREEZELCOLOR = new Color(0, 199f/255f, 255f/255f)*3f;
+    private Color SPEEDUPCOLOR = new Color(0, 255f/255f, 6f/255f)*3f;
+    private Color BIGBARCOLOR = new Color(188f/255f, 0, 255f/255f)*3f;
+    private Color SMALLBARCOLOR = new Color(255f/255f, 98f/255f, 0)*3f;
+
 /*
     [SerializeField] private GameObject player1;
     [SerializeField] private GameObject player2;
 */
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        type = PowerUpType.freeze;
-    }
 
     public void execute()
     {
@@ -34,20 +34,38 @@ public class PowerUp : MonoBehaviour
         switch(powerUpIndex) {
             case 0:
                 type = PowerUpType.freeze;
-                this.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0, 199, 255));
+                setColor(FREEZELCOLOR);
                 break;
             case 1:
                 type = PowerUpType.speedUp;
-                this.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0, 255, 6));
+                setColor(SPEEDUPCOLOR);
                 break;
             case 2:
                 type = PowerUpType.bigBar;
-                this.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(188, 0, 255));
+                setColor(BIGBARCOLOR);
                 break;
             case 3:
                 type = PowerUpType.smallBar;
-                this.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(255, 98, 0));
+                setColor(SMALLBARCOLOR);
                 break;
         }
+    }
+
+    private void setColor(Color color) {
+        this.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+    }
+
+    public string getName(){
+        switch(type){
+            case PowerUpType.freeze:
+                return "Freeze";
+            case PowerUpType.speedUp:
+                return "Speed up";
+            case PowerUpType.bigBar:
+                return "Big Bar";
+            case PowerUpType.smallBar:
+                return "Small Bar";
+        }
+        return "";
     }
 }

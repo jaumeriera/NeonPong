@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,6 +17,14 @@ public class UIManager : MonoBehaviour
     // To active and deactivate menu
     private GameObject pauseMenu;
 
+    // To display power ups
+    private GameObject powerUp1;
+    private GameObject powerUp2;
+    [SerializeField] private TextMeshProUGUI powerUp1Text;
+    [SerializeField] private TextMeshProUGUI powerUp2Text;
+    private Color DEFAULTCOLOR = new Color(1, 1, 1);
+    private string DEFAULTTEXT = "No power up";
+
     private Settings settings;
 
     private void Start()
@@ -24,6 +34,9 @@ public class UIManager : MonoBehaviour
             pauseMenu.SetActive(false);
         }
         Time.timeScale = 1; 
+
+        powerUp1 =  GameObject.FindGameObjectWithTag("Display1");
+        powerUp2 =  GameObject.FindGameObjectWithTag("Display2");
     }
 
     public void ResumeGame()
@@ -68,5 +81,29 @@ public class UIManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void SetPowerUp1(GameObject pw) {
+        Color color = pw.gameObject.GetComponent<Renderer>().material.GetColor("_EmissionColor");
+        powerUp1.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+        string text = pw.gameObject.GetComponent<PowerUp>().getName();
+        powerUp1Text.text = text;
+    }
+
+    public void SetPowerUp2(GameObject pw) {
+        Color color = pw.gameObject.GetComponent<Renderer>().material.GetColor("_EmissionColor");
+        powerUp2.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+        string text = pw.gameObject.GetComponent<PowerUp>().getName();
+        powerUp2Text.text = text;
+    }
+
+    public void UnsetPowerUp1(){
+        powerUp1.GetComponent<Renderer>().material.SetColor("_EmissionColor", DEFAULTCOLOR);
+        powerUp1Text.text = DEFAULTTEXT;
+    }
+
+    public void UnsetPowerUp2(){
+        powerUp2.GetComponent<Renderer>().material.SetColor("_EmissionColor", DEFAULTCOLOR);
+        powerUp2Text.text = DEFAULTTEXT;
     }
 }

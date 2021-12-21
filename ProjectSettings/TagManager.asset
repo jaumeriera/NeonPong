@@ -12,6 +12,8 @@ TagManager:
   - ball
   - PauseMenu
   - PowerUp
+  - Display1
+  - Display2
   layers:
   - Default
   - TransparentFX
