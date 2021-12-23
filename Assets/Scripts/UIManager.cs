@@ -76,7 +76,18 @@ public class UIManager : MonoBehaviour
 
     public void PlayTwoGame()
     {
+        settings = GameObject.Find("Settings").GetComponent<Settings>();
+        settings.SetSinglePlayer(false);
         SceneManager.LoadScene(1);
+    }
+
+    public void PlayAgain() {
+        settings = GameObject.Find("Settings").GetComponent<Settings>();
+        if (settings.GetSinglePlayer()){
+            PlaySingleGame();
+        } else {
+            PlayTwoGame();
+        }
     }
 
     public void Controls()
