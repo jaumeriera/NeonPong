@@ -15,6 +15,7 @@ TagManager:
   - Display1
   - Display2
   - Music
+  - MusicManager
   layers:
   - Default
   - TransparentFX

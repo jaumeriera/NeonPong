@@ -21,12 +21,18 @@ public class BallMove : MonoBehaviour
     private int DIRECTIONPLAYER1 = 1;
     private int DIRECTIONPLAYER2 = -1;
 
+    // To manage music
+    private MusicManager musicManager; 
+
     void Start()
     {
         ballRb = GetComponent<Rigidbody>();
         float xVelocity = Random.Range(0, 2) == 0 ? -1 : 1;
         float zVelocity = Random.Range(0, 2) == 0 ? -1 : 1;
         translation = new Vector3(xVelocity, 0, zVelocity) * initialVelocity;
+
+        // Sound
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
     }
 
     void Update()
@@ -61,6 +67,7 @@ public class BallMove : MonoBehaviour
         if (collision.gameObject.tag == "Wall") {
             translation.z = translation.z * -1;
         } else if (collision.gameObject.tag == "Player") {
+            musicManager.HitSound();
             currentHits += 1;
             checkForVelocityIncrease();
             changeTranslation(collision);
@@ -80,9 +87,11 @@ public class BallMove : MonoBehaviour
         // Check for ball arriving to goals
         if (collision.gameObject.tag == "ScoreZonePlayer1") {
             stopBall();
+            musicManager.GoalSound();
             gameManager.player2Score();
         } else if (collision.gameObject.tag == "ScoreZonePlayer2") {
             stopBall();
+            musicManager.GoalSound();
             gameManager.player1Score();
         }
     }
