@@ -14,6 +14,7 @@ TagManager:
   - PowerUp
   - Display1
   - Display2
+  - Music
   layers:
   - Default
   - TransparentFX
