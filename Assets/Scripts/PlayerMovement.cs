@@ -62,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
                 movement = 1;
             }
         }
+
+        // For checking bounds
         Vector3 playerPosition = transform.position;
         float newPosition = playerPosition.z + movement * velocity * Time.deltaTime;
         if (isBigBar){

@@ -68,6 +68,7 @@ public class PowerUp : MonoBehaviour
     
     public void SetRandomPowerUpType() {
         int powerUpIndex = Random.Range(0, System.Enum.GetValues(typeof(PowerUpType)).Length);
+        powerUpIndex = 3;
         switch(powerUpIndex) {
             case 0:
                 type = PowerUpType.freeze;
@@ -152,10 +153,10 @@ public class PowerUp : MonoBehaviour
         Transform transform = otherPlayer.gameObject.GetComponent<Transform>();
         Vector3 scale = transform.localScale;
         transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, SMALLBARLEN);
-        script.isSmallBar = true;
+        otherScript.isSmallBar = true;
         yield return new WaitForSeconds(SMALLBARTIME);
         transform.localScale = scale;
-        script.isSmallBar = false;
+        otherScript.isSmallBar = false;
         // return power up to pool
         script.powerUpActive = false;
         script.DeactivatePowerUp();
