@@ -14,7 +14,17 @@ public class PlayerMovement : MonoBehaviour
 
     public int velocity = 8;
     public bool isPlayer1 = false;
+
+    // Bounds for bars
     private float zBound = 3.85f;
+    private float bigZBound = 3.23f;
+    private float smallZBound = 4.25f;
+
+    // Toc check bar state
+    public bool isBigBar = false;
+    public bool isSmallBar = false;
+    public bool powerUpActive = false;
+    
     public GameObject powerUp;
 
     // Update is called once per frame
@@ -54,15 +64,25 @@ public class PlayerMovement : MonoBehaviour
         }
         Vector3 playerPosition = transform.position;
         float newPosition = playerPosition.z + movement * velocity * Time.deltaTime;
-        playerPosition.z = Mathf.Clamp(newPosition, -zBound, zBound);
+        if (isBigBar){
+            playerPosition.z = Mathf.Clamp(newPosition, -bigZBound, bigZBound);
+        } else if (isSmallBar){
+            playerPosition.z = Mathf.Clamp(newPosition, -smallZBound, smallZBound);  
+        } else { 
+            playerPosition.z = Mathf.Clamp(newPosition, -zBound, zBound);
+        }
         transform.position = playerPosition;
 
         // check for player using a powerUp
-        if(isPlayer1 && Input.GetAxisRaw("PowUp1") != 0 && powerUp != null){
-            usePowerUp1();
-        }
-        if(!isPlayer1 && Input.GetAxisRaw("PowUp2") != 0 && powerUp != null &&  !gameManager.isSinglePlayer()){
-            usePowerUp2();
+        if (!powerUpActive){
+            if(isPlayer1 && Input.GetAxisRaw("PowUp1") != 0 && powerUp != null){
+                powerUpActive = true;
+                usePowerUp1();
+            }
+            if(!isPlayer1 && Input.GetAxisRaw("PowUp2") != 0 && powerUp != null &&  !gameManager.isSinglePlayer()){
+                powerUpActive = true;
+                usePowerUp2();
+            }
         }
     }
 
@@ -79,17 +99,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void usePowerUp1() {
-        //powerUp.execute();
-        releasePowerUp();
-        gameManager.PowerUpUsed1();
-        powerUp = null;
+        powerUp.GetComponent<PowerUp>().execute1();
+    }
+
+    public void DeactivatePowerUp() {
+        if (isPlayer1) {
+            gameManager.PowerUpUsed1();
+        } else {  
+            gameManager.PowerUpUsed2();
+        }
     }
 
     public void usePowerUp2() {
-        //powerUp.execute();
-        releasePowerUp();
-        gameManager.PowerUpUsed2();
-        powerUp = null;
+        powerUp.GetComponent<PowerUp>().execute2();
     }
 
     public void SetPowerUp(GameObject obj) {
@@ -100,17 +122,21 @@ public class PlayerMovement : MonoBehaviour
     void OnTriggerEnter(Collider collision){
         // get power up
         if (collision.gameObject.tag == "PowerUp") {
-            if(hasOtherPowerUp()){
-                releasePowerUp();
-            }
-            powerUp = collision.gameObject;
-            collision.gameObject.GetComponent<SphereCollider>().enabled = false;
-            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            if(isPlayer1){
-                gameManager.SetPlayer1PowerUp(collision.gameObject);
+            if (powerUpActive) {
+                collision.gameObject.SetActive(false);
             } else {
-                gameManager.SetPlayer2PowerUp(collision.gameObject);
-            }
+                if(hasOtherPowerUp()){
+                    releasePowerUp();
+                }
+                powerUp = collision.gameObject;
+                collision.gameObject.GetComponent<SphereCollider>().enabled = false;
+                collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                if(isPlayer1){
+                    gameManager.SetPlayer1PowerUp(collision.gameObject);
+                } else {
+                    gameManager.SetPlayer2PowerUp(collision.gameObject);
+                }
+            } 
         } 
     }
 
@@ -118,10 +144,13 @@ public class PlayerMovement : MonoBehaviour
         return powerUp != null;
     }
 
-    private void releasePowerUp(){
-        powerUp.gameObject.GetComponent<SphereCollider>().enabled = true;
-        powerUp.gameObject.GetComponent<MeshRenderer>().enabled = true;
-        powerUp.gameObject.SetActive(false);
+    public void releasePowerUp(){
+        if (powerUp){
+            powerUp.gameObject.GetComponent<SphereCollider>().enabled = true;
+            powerUp.gameObject.GetComponent<MeshRenderer>().enabled = true;
+            powerUp.gameObject.SetActive(false);
+            powerUp = null;
+        }
     }
 
 }

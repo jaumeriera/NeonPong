@@ -21,9 +21,6 @@ public class GameManager : MonoBehaviour
     // To control pause
     [SerializeField] private UIManager uimanager;
 
-    // Spawner
-    [SerializeField] private PowerUpSpawner spawner;
-
     // To manage settings
     private Settings settings;
 
@@ -62,9 +59,11 @@ public class GameManager : MonoBehaviour
     void restartPlayers() {
         player1Transform.position = new Vector3(player1Transform.position.x, 0, 0);
         player2Transform.position = new Vector3(player2Transform.position.x, 0, 0);
-        spawner.Restart();
-        player1State.powerUp=null;
-        player2State.powerUp=null;
+        //TODO Reset velocity and scale
+        player1State.releasePowerUp();
+        PowerUpUsed1();
+        player2State.releasePowerUp();
+        PowerUpUsed2();
     }
 
     public void player1Score() {

@@ -25,6 +25,10 @@ public class PowerUpSpawner : MonoBehaviour
     private float player2axis = 7.9f;
     private float zBound = 3.85f;
 
+    // To assign to power ups
+    [SerializeField] private GameObject player1;
+    [SerializeField] private GameObject player2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +36,8 @@ public class PowerUpSpawner : MonoBehaviour
         lastSpawn = SpawnZones.Player1;
         for(int i=0; i <amountToPool; i++) {
             GameObject obj = Instantiate(powerUpPrefab);
+            obj.GetComponent<PowerUp>().SetPlayer1(player1);
+            obj.GetComponent<PowerUp>().SetPlayer2(player2);
             obj.SetActive(false);
             powerUpPool.Add(obj);
         }
