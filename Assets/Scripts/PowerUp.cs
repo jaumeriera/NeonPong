@@ -68,7 +68,6 @@ public class PowerUp : MonoBehaviour
     
     public void SetRandomPowerUpType() {
         int powerUpIndex = Random.Range(0, System.Enum.GetValues(typeof(PowerUpType)).Length);
-        powerUpIndex = 3;
         switch(powerUpIndex) {
             case 0:
                 type = PowerUpType.freeze;

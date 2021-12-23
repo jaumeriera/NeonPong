@@ -74,8 +74,7 @@ public class GameManager : MonoBehaviour
         state = State.Goal1;
         score1 += 1;
         if(matchIsFinished()){
-            // TODO Go to final screen
-            doNothing();
+            uimanager.EndGame();
         }
         display1.updateScore(score1);
         restartPlayers();
@@ -88,8 +87,7 @@ public class GameManager : MonoBehaviour
         state = State.Goal2;
         score2 += 1;
         if (matchIsFinished()) {
-            // TODO Go to final screen
-            doNothing();
+            uimanager.EndGame();
         }
         display2.updateScore(score2);
         restartPlayers();
@@ -99,7 +97,7 @@ public class GameManager : MonoBehaviour
     }
 
     private bool matchIsFinished(){
-        return score1 == 10 || score2 == 10;
+        return score1 == 10 || score2 == 1;
     }
 
     public void served(){
@@ -109,11 +107,6 @@ public class GameManager : MonoBehaviour
 
     public void Pause() {
         uimanager.PauseGame();
-    }
-
-    // TODO REMOVE
-    private bool doNothing(){
-        return true;
     }
 
     public void SetPlayer1PowerUp(GameObject obj){

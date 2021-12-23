@@ -16,6 +16,7 @@ TagManager:
   - Display2
   - Music
   - MusicManager
+  - EndGame
   layers:
   - Default
   - TransparentFX

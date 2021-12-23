@@ -9,8 +9,10 @@ public class DontDestroy : MonoBehaviour
     {
         GameObject [] obj = GameObject.FindGameObjectsWithTag(this.gameObject.tag);
         if(obj.Length > 1) {
+            print(this.gameObject);
             Destroy(this.gameObject);
+        } else { 
+            DontDestroyOnLoad(this.gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
     }
 }

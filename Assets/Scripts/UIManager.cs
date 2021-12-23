@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
 
     // To active and deactivate menu
     private GameObject pauseMenu;
+    private GameObject gameOverMenu;
 
     // To display power ups
     private GameObject powerUp1;
@@ -33,10 +34,20 @@ public class UIManager : MonoBehaviour
         if (pauseMenu){
             pauseMenu.SetActive(false);
         }
+
+        gameOverMenu = GameObject.FindGameObjectWithTag("EndGame");
+        if (gameOverMenu){
+            gameOverMenu.SetActive(false);
+        }
         Time.timeScale = 1; 
 
         powerUp1 =  GameObject.FindGameObjectWithTag("Display1");
         powerUp2 =  GameObject.FindGameObjectWithTag("Display2");
+    }
+
+    public void EndGame(){
+        gameOverMenu.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void ResumeGame()

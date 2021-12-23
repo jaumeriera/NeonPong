@@ -25,7 +25,6 @@ public class Togle : MonoBehaviour
 
     void ToggleValueChanged(Toggle change)
     {
-        print(m_Toggle.isOn);
         settings.SetPowerUpsActive(m_Toggle.isOn);
     }
 }

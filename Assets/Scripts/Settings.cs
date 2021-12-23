@@ -21,7 +21,6 @@ public class Settings : MonoBehaviour
 
     public void SetPowerUpsActive(bool active){
         powerUpsActive = active;
-        print(powerUpsActive);
     }
 
 }
