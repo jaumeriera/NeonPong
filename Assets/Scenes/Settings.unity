@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d8c7dae7bc31d4bb273e5f4ce64bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpsActive: 0
 --- !u!4 &656791
 Transform:
   m_ObjectHideFlags: 0
@@ -586,6 +587,23 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 630961656359598060, guid: c6d269e687f308440a55b8b80c7a5f5a, type: 3}
   m_PrefabInstance: {fileID: 974375275}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &847765334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2851238488811820998, guid: 1a215cbc78dfc634d98c817472d3cad3, type: 3}
+  m_PrefabInstance: {fileID: 2851238488774138087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &847765335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847765334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc586e689a6100748ba154079d75c261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &974375275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1013,7 +1031,6 @@ GameObject:
   - component: {fileID: 1934069555}
   - component: {fileID: 1934069554}
   - component: {fileID: 1934069558}
-  - component: {fileID: 1934069559}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1120,20 +1137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUp1Text: {fileID: 0}
   powerUp2Text: {fileID: 0}
---- !u!114 &1934069559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1934069553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd18a18554931e84c980b24840ad5a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerUp1Text: {fileID: 0}
-  powerUp2Text: {fileID: 0}
 --- !u!224 &1955690908 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 630961656359598060, guid: c6d269e687f308440a55b8b80c7a5f5a, type: 3}
@@ -1219,14 +1222,14 @@ PrefabInstance:
     - target: {fileID: 2851238488811820996, guid: 1a215cbc78dfc634d98c817472d3cad3, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 656790}
+      objectReference: {fileID: 0}
     - target: {fileID: 2851238488811820996, guid: 1a215cbc78dfc634d98c817472d3cad3, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2851238488811820996, guid: 1a215cbc78dfc634d98c817472d3cad3, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetPowerUpsActive
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2851238488811820996, guid: 1a215cbc78dfc634d98c817472d3cad3, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

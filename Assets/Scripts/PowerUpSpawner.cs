@@ -55,21 +55,23 @@ public class PowerUpSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.getState() == GameManager.State.Playing){
-            timeFromLastSapwn += Time.deltaTime;
-            if (timeFromLastSapwn >= spawnDelay) {
-                timeFromLastSapwn = 0;
-                // spawn power up
-                switch(lastSpawn) {
-                    case SpawnZones.Player1:
-                        spawnPowerUp(player2axis);
-                        lastSpawn = SpawnZones.Player2;
-                        break;
-                    case SpawnZones.Player2:
-                        spawnPowerUp(player1axis);
-                        lastSpawn = SpawnZones.Player1;
-                        break;
-                } 
+        if (gameManager.hasPowerUpsActive()){
+            if(gameManager.getState() == GameManager.State.Playing){
+                timeFromLastSapwn += Time.deltaTime;
+                if (timeFromLastSapwn >= spawnDelay) {
+                    timeFromLastSapwn = 0;
+                    // spawn power up
+                    switch(lastSpawn) {
+                        case SpawnZones.Player1:
+                            spawnPowerUp(player2axis);
+                            lastSpawn = SpawnZones.Player2;
+                            break;
+                        case SpawnZones.Player2:
+                            spawnPowerUp(player1axis);
+                            lastSpawn = SpawnZones.Player1;
+                            break;
+                    } 
+                }
             }
         }
     }

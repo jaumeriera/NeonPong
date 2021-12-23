@@ -48,6 +48,10 @@ public class GameManager : MonoBehaviour
         return settings.GetSinglePlayer();
     }
 
+    public bool hasPowerUpsActive() {
+        return settings.GetPowerUpsActive();
+    }
+
     public void startMatch() {
         state = State.Playing;
     }

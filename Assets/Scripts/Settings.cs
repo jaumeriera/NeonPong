@@ -5,7 +5,7 @@ using UnityEngine;
 public class Settings : MonoBehaviour
 {
     private bool SinglePlayer;
-    private bool powerUpsActive = true;
+    public bool powerUpsActive;
     
     public bool GetSinglePlayer(){
         return SinglePlayer;
