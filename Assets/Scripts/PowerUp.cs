@@ -108,10 +108,10 @@ public class PowerUp : MonoBehaviour
 
     public IEnumerator FreezePlayer(GameObject userPlayer, GameObject otherPlayer){
         PlayerMovement otherScript = otherPlayer.gameObject.GetComponent<PlayerMovement>();
-        int velocity = otherScript.velocity;
-        otherScript.velocity = 0;
+        int velocity = otherScript.GetVelocity();
+        otherScript.SetVelocity(0);
         yield return new WaitForSeconds(FREEZETIME);
-        otherScript.velocity = velocity;
+        otherScript.SetVelocity(velocity);
         // return power up to pool
         PlayerMovement script = userPlayer.gameObject.GetComponent<PlayerMovement>();
         script.powerUpActive = false;
@@ -121,10 +121,10 @@ public class PowerUp : MonoBehaviour
 
     public IEnumerator SpeedUpPlayer(GameObject userPlayer){
         PlayerMovement script = userPlayer.gameObject.GetComponent<PlayerMovement>();
-        int velocity = script.velocity;
-        script.velocity = SPEEDUPVALUE;
+        int velocity = script.GetVelocity();
+        script.SetVelocity(SPEEDUPVALUE);
         yield return new WaitForSeconds(SPEEDUPTIME);
-        script.velocity = velocity;
+        script.SetVelocity(velocity);
         // return power up to pool
         script.powerUpActive = false;
         script.DeactivatePowerUp();

@@ -9,12 +9,12 @@ public class BallMove : MonoBehaviour
 
     // Ball fields
     private Rigidbody ballRb;
-    private float initialVelocity = 4f;
+    private float initialVelocity = 5f;
     private Vector3 translation;
 
     // To manage ball speed
-    [SerializeField] int INCREASEEACH = 10;
-    [SerializeField] float INCREASEVELOCITY = 1.4F;
+    [SerializeField] int INCREASEEACH = 4;
+    [SerializeField] float INCREASEVELOCITY = 1.5F;
     private int currentHits = 0;
 
     // Constants for directions
@@ -22,7 +22,12 @@ public class BallMove : MonoBehaviour
     private int DIRECTIONPLAYER2 = -1;
 
     // To manage music
-    private MusicManager musicManager; 
+    private MusicManager musicManager;
+
+    // Collision particles
+    [SerializeField] private ParticleSystem CollisionPSP1;
+    [SerializeField] private ParticleSystem CollisionPSP2;
+    [SerializeField] private ParticleSystem GoalPS;
 
     void Start()
     {
@@ -68,10 +73,24 @@ public class BallMove : MonoBehaviour
             translation.z = translation.z * -1;
         } else if (collision.gameObject.tag == "Player") {
             musicManager.HitSound();
+            collisionParticle(collision);
             currentHits += 1;
             checkForVelocityIncrease();
             changeTranslation(collision);
         }
+    }
+
+    void collisionParticle(Collision collision) {
+        ParticleSystem CollisionPS;
+        Material playerMaterial = collision.gameObject.GetComponent<Renderer>().material;
+        if(collision.gameObject.GetComponent<PlayerMovement>().isPlayer1){
+            CollisionPS = CollisionPSP1;
+        } else {
+            CollisionPS = CollisionPSP2;
+        }
+        CollisionPS.transform.position = this.transform.position;
+        CollisionPS.Play();
+
     }
 
     void changeTranslation(Collision collision) {
@@ -85,13 +104,16 @@ public class BallMove : MonoBehaviour
 
     void OnTriggerEnter(Collider collision){
         // Check for ball arriving to goals
+        GoalPS.transform.position = this.transform.position;
         if (collision.gameObject.tag == "ScoreZonePlayer1") {
             stopBall();
             musicManager.GoalSound();
+            GoalPS.Play();
             gameManager.player2Score();
         } else if (collision.gameObject.tag == "ScoreZonePlayer2") {
             stopBall();
             musicManager.GoalSound();
+            GoalPS.Play();
             gameManager.player1Score();
         }
     }

@@ -12,7 +12,11 @@ public class PlayerMovement : MonoBehaviour
     private int BONUSVELOCITYPLAYER = 2;
     private bool firstIteration = true;
 
-    public int velocity = 8;
+    // For restart players
+    private Vector3 INITIALSCALE = new Vector3(0.33044f, 1, 2.2113f);
+    [SerializeField] private int INITIALVELOCITY = 10;
+
+    private int velocity;
     public bool isPlayer1 = false;
 
     // Bounds for bars
@@ -26,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
     public bool powerUpActive = false;
     
     public GameObject powerUp;
+
+    void Start() {
+        velocity = INITIALVELOCITY;
+    }
 
     // Update is called once per frame
     void Update()
@@ -86,6 +94,23 @@ public class PlayerMovement : MonoBehaviour
                 usePowerUp2();
             }
         }
+    }
+
+    public void resetPlayer(){
+        this.gameObject.transform.localScale = INITIALSCALE;
+        this.SetVelocity(INITIALVELOCITY);
+        isBigBar = false;
+        isSmallBar = false;
+        powerUpActive = false;
+        firstIteration = true;
+    }
+
+    public void SetVelocity(int vel){
+        velocity = vel;
+    }
+
+    public int GetVelocity() {
+        return velocity;
     }
 
     private void searchForBall() {

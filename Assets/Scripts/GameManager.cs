@@ -65,8 +65,10 @@ public class GameManager : MonoBehaviour
         player2Transform.position = new Vector3(player2Transform.position.x, 0, 0);
         //TODO Reset velocity and scale
         player1State.releasePowerUp();
+        player1State.resetPlayer();
         PowerUpUsed1();
         player2State.releasePowerUp();
+        player2State.resetPlayer();
         PowerUpUsed2();
     }
 
@@ -97,7 +99,7 @@ public class GameManager : MonoBehaviour
     }
 
     private bool matchIsFinished(){
-        return score1 == 10 || score2 == 1;
+        return score1 == 10 || score2 == 10;
     }
 
     public void served(){

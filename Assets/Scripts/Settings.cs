@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
-    private bool SinglePlayer;
+    public bool SinglePlayer;
     public bool powerUpsActive;
     
     public bool GetSinglePlayer(){
