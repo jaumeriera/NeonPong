@@ -1,5 +1,5 @@
 # NeonPong
-Neon pong version on Unity3D. This game is avaible on [itch.io](https://jaumerg.itch.io/)
+Neon pong version on Unity3D. This game is avaible on [itch.io](https://jaumerg.itch.io/neon-pong)
 
 ## Branches
 
