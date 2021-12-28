@@ -21,8 +21,8 @@ public class PowerUpSpawner : MonoBehaviour
         Player2
     }
     private SpawnZones lastSpawn;
-    private float player1axis = -7.9f;
-    private float player2axis = 7.9f;
+    private float player1axis = -7.5f;
+    private float player2axis = 7.5f;
     private float zBound = 3.85f;
 
     // To assign to power ups
